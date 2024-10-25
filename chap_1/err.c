@@ -25,8 +25,8 @@ void err_doit(int8_t errnoflag, int level, const char *fmt, va_list ap )
         if (errnoflag)
                 snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), ": %s", strerror(errno));
 
-        syslog(level, "%s", buf);
-        fprintf(stderr, "%s", buf);
+        syslog(level, "%s\n", buf);
+        fprintf(stderr, "%s\n", buf);
 }
 
 void err_sys(const char *fmt, ...)
@@ -61,7 +61,7 @@ void err_msg(const char *fmt, ...)
 {
         va_list ap;
         va_start(ap, fmt);
-        err_doit(1, LOG_INFO, fmt, ap);
+        err_doit(0, LOG_INFO, fmt, ap);
         va_end(ap);
         return;
 }
@@ -70,7 +70,7 @@ void err_quit(const char *fmt, ...)
 {
         va_list ap;
         va_start(ap, fmt);
-        err_doit(1, LOG_ERR, fmt, ap);
+        err_doit(0, LOG_ERR, fmt, ap);
         va_end(ap);
         exit(1);
 }

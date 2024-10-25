@@ -1,15 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <strings.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-
-void err_sys(const char *x)
-{
-        perror(x);
-        exit(1);
-}
+#include <sys/syslog.h>
+#include <syslog.h>
+#include "err.h"
 
 int main(int argc, char **argv) {
   int sockfd;
@@ -90,5 +86,8 @@ int main(int argc, char **argv) {
   if (sockfd < 0)
           err_sys("socket error");
 
+  if ( (connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr))) < 0)
+  {
+  }
   return 0;
 }

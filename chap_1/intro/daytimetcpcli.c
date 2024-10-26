@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
    */
 
   if (argc != 2)
-    printf("Usage: ./daytimetcp <IPaddress>\n");
+    err_quit("Usage: ./daytimetcp <IPaddress>\n");
 
   if( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
           err_sys("socket error");
@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
    * ON_ERROR -> 0 (malformed ip address), -1 (does not support the AF_FAMILY)
    */
   if (inet_pton(AF_INET, argv[1], &servaddr.sin_addr) < 1)
-          err_sys("inet_pton error");
+          err_quit("inet_pton error");
 
   if (connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0)
           err_sys("connect error");

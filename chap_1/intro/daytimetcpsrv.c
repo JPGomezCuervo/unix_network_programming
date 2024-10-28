@@ -26,7 +26,7 @@ int main()
          * end of the day IPv6 was created and a whole new structure was created:
          * sockaddr_in6*/
         servaddr.sin_addr.s_addr = htonl(INADDR_ANY); 
-        servaddr.sin_port = htons(13); /* daytime server */
+        servaddr.sin_port = htons(9999);
 
         Bind(listenfd, (struct sockaddr *) &servaddr, sizeof(servaddr));
 
@@ -43,8 +43,9 @@ int main()
 
                 snprintf(buf, MAXLINE, "%.24s\r\n", ctime(&ticks));
                 
-                Write(connfd, buf, strlen(buf));
-
+                for (int i = 0; i < strlen(buf); i++)
+                        Write(connfd, &buf[i], 1);
+               
                 Close(connfd);
         }
 

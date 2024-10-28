@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
   bzero(&servaddr, sizeof(servaddr));
 
   servaddr.sin_family = AF_INET;
-  servaddr.sin_port = htons(13);
+  servaddr.sin_port = htons(9999);
 
   /*
    * int inet_pton(int domain, char ip_address, uint32_t s_addr | uint64_t s_addr);
@@ -91,16 +91,22 @@ int main(int argc, char **argv) {
   if (connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0)
           err_sys("connect error");
 
+  int counter = 0;
   while ( (n = read(sockfd, recvline, MAXLINE )) > 0)
   {
+          counter++;
+
           recvline[n] = '\0';
 
           if(fputs(recvline, stdout) == EOF) 
                   err_sys("fputs error");
+
   }
 
   if (n < 0)
           err_sys("read error");
+
+  printf("Times called read: %d\n", counter);
 
   exit(0);
 }

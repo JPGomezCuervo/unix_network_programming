@@ -1,0 +1,22 @@
+IPv4: Internet Protocol version 4. 32-bit address protocol responsible for the nework
+layer.
+
+IPv6: Internet Protocol version 6. 128-bit address protocol, succesor of the IPv4.
+
+TCP: Transmission Control Protocol. Connection oriented protocol that provides
+reliability and a full duplex byte stream to its users with no boundaries.
+
+UDP: User Datagram Protocol. Connectionless protocol where packets are datagrams with
+boundaries. It's unreliable because it doesn't guarantee that packets arrive to their
+destination.
+
+STCP: Stream Control Protocol. Connection oriented protocol that provides reliability
+and a full duplex association. With association we mean that a STCP socket we can
+address multiple IP's with the same host, also called as multihoming. Another difference
+with TCP is that packets have boundaries. It can use IPv4, IPv6 or both.
+
+ICMP: Internet Control Message Protocol. This protocol handles error and control
+information between routers and hosts. It is generated and processed by TCP, is not
+meant to be used by users, it is a inter protcol.
+
+IGMP: Internet Group Message Protocol. Used with multicasting.

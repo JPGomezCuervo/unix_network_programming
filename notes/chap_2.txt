@@ -17,6 +17,17 @@ with TCP is that packets have boundaries. It can use IPv4, IPv6 or both.
 
 ICMP: Internet Control Message Protocol. This protocol handles error and control
 information between routers and hosts. It is generated and processed by TCP, is not
-meant to be used by users, it is a inter protcol.
+meant to be used by users, it is a inter-protcol.
 
 IGMP: Internet Group Message Protocol. Used with multicasting.
+
+ICMPv6: Internet Control Message Protocol. Combines the functions of ICMPv4, IGMP and ARP.
+
+ARP: Address Resolution Protocol. ARP maps IPv4 address into a hardware address MAC.
+It's normally used in broadcasting.
+
+RARP: Reverse Address Resolution Protocol. Maps MAC into IPv4.
+
+BPF: BSD Packer filter. Interface that provides access to the datalink layer.
+
+DLPI: Datalink Provider Interface. Interface that provides access to the datalink layer.

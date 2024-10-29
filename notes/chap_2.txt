@@ -31,3 +31,19 @@ RARP: Reverse Address Resolution Protocol. Maps MAC into IPv4.
 BPF: BSD Packer filter. Interface that provides access to the datalink layer.
 
 DLPI: Datalink Provider Interface. Interface that provides access to the datalink layer.
+
+[TRANSMISION CONTROL PROTOCOL]
+
+TCP is said to be reliable, not because every segment has a 100% guarantee that it will
+arrive. But because in case it didn't, the protocol will notify the sender that the
+segment didn't get. TCP uses a mechanism called acknoledgment to notify the sender every
+time a message did arrive. If an acknoledgment wasn't send by the receiver, TCP will
+retransmit the segment for given amount of time until an acknoledgment is received. The
+time the protocol decides to wait is dynamic and is called Rounnd-Trip Time (RTT).
+
+TCP provides control flow. This means the protcol can tell his peer how many bytes of
+data its willing to receive. This is called window. A window is a buffer that the
+receiver manages and can be increase or decrease according to the amount of data
+received. To avoid overflows of the window buffer, once the space its over the protocol
+will notify the sender to stop sending information until the buffer is read by the
+application. Once the window is free the sender will transmit more segments.

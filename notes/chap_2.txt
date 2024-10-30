@@ -47,3 +47,38 @@ receiver manages and can be increase or decrease according to the amount of data
 received. To avoid overflows of the window buffer, once the space its over the protocol
 will notify the sender to stop sending information until the buffer is read by the
 application. Once the window is free the sender will transmit more segments.
+
+The tree-way handshake:
+
+1. The server starts listening by following the Socket, Bind, Listen pattern. This is
+called a passive connection.
+
+2. The client initiates an active connection by sending a SYN message (without data) to
+request a connection. The server responds with a SYN-ACK message, acknowledging the SYN
+and providing its own SYN.
+
+3. The client completes the handshake by sending an ACK message back to the server.
+
+Summary:
+
+Client -> Server: Sends SYN.
+Server -> Client: Sends ACK-SYN.
+Client -> Server: Sends ACK.
+
+TCP options:
+
+MSS: Maximum Segment Size. The maximum amount of data that the receiver is willing to
+accept in each TCP segment. The sender uses the MSS receive by its peer to know how
+much data he can send. In code we can set the MSS with TCP_MAXSEG.
+
+WSO: Window Scale Option. the maximum window that either TCP can advertise to the other
+TCP is 65,535, because the field occupies 16 bits. However speed has increased so the 
+window must be bigger, hence programmers add a field to specied how many bit must be
+shifted the left to power the size of the buffer (window). 65,535 ^ 10 = 65,535 * 1024 =
+67,108,864. We can set the WSO when configuring the socket with option SO_RCVBUF.
+
+Timestamp option: This is used in high-speed connections to prevent data corruption
+caused by old, delayed and duplicated segments.
+
+THE LAST TWO OPTIONS ARE NEW AND ARE PART OF THE RFC 1323. In case one those isn't
+implemented in the current machine they are just ignored.

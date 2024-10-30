@@ -37,7 +37,7 @@ DLPI: Datalink Provider Interface. Interface that provides access to the datalin
 TCP is said to be reliable, not because every segment has a 100% guarantee that it will
 arrive. But because in case it didn't, the protocol will notify the sender that the
 segment didn't get. TCP uses a mechanism called acknoledgment to notify the sender every
-time a message did arrive. If an acknoledgment wasn't send by the receiver, TCP will
+time a message did arrive. If an acknoledgment isn't send by the receiver, TCP will
 retransmit the segment for given amount of time until an acknoledgment is received. The
 time the protocol decides to wait is dynamic and is called Rounnd-Trip Time (RTT).
 

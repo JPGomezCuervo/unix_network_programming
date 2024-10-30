@@ -82,3 +82,37 @@ caused by old, delayed and duplicated segments.
 
 THE LAST TWO OPTIONS ARE NEW AND ARE PART OF THE RFC 1323. In case one those isn't
 implemented in the current machine they are just ignored.
+
+The TCP termination:
+
+1. One application calls the Close function and it sends FIN message.
+
+2. The receiver ACK the FIN message and informs the aplication with an EOF. 
+
+3. After reading the remain data and handle the EOF, the aplication calls Close and sends
+a FIN.
+
+4. Finally the system that initiated the termination process receives the FIN,
+acknoledge it and terminates de connection.
+
+Summary:
+
+Client -> Server = sends FIN
+Server -> Client = sends ACK
+Server -> Client = sends the remaining data if remaining (half close)
+Server -> Client = sends FIN
+Client -> Server = sends ACK
+
+The TCP states:
+
+1. CLOSED
+2. LISTEN
+3. SYN_SENT
+4. SYN_RCVD
+5. ESTABLISHED
+6. CLOSE_WAIT
+7. LAST_ACK
+8. FIN_WAIT_1
+9. FIN_WAIT_2
+10. TIME_WAIT (2MSL -> 2 times Maximum Segment Life)
+11. CLOSING

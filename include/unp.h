@@ -1,4 +1,6 @@
+#include <arpa/inet.h>
 #include <errno.h>
+#include <netinet/in.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +21,7 @@ void err_dump(const char *fmt, ...);
 void err_msg(const char *fmt, ...);
 
 int Socket(int domain, int type, int protocol);
+char *Sock_ntop(const struct sockaddr *sa, socklen_t addrlen);
 int Bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 int Listen(int sockfd, int backlog);
 int Connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);

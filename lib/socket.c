@@ -1,7 +1,4 @@
-#include "../include/socket.h"
-#include "../include/err.h"
-#include <sys/socket.h>
-#include <unistd.h>
+#include "../include/unp.h"
 
 inline int Socket(int domain, int type, int protocol)
 {

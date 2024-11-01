@@ -1,10 +1,4 @@
-#include <syslog.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <errno.h>
-#include <stdio.h>
-#include <string.h>
-#include "../include/err.h"
+#include "../include/unp.h"
 
 /* standard error functions
  

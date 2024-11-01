@@ -1,14 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <strings.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/syslog.h>
-#include <syslog.h>
-#include <unistd.h>
 #include "../../include/unp.h"
-#include "../../include/err.h"
 
 int main(int argc, char **argv) {
   int sockfd, n;

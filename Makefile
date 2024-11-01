@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -ggdb
-LIBS = ./lib/err.c ./include/err.h ./include/unp.h
-LIBS2 = ./lib/socket.c ./include/socket.h
+LIBS = ./lib/err.c ./include/unp.h
+LIBS2 = ./lib/socket.c ./include/unp.h
 
 daytimetcpcli: ./chap_1/intro/daytimetcpcli.c
 	$(CC) $(CFLAGS) -o ./chap_1/intro/daytimetcpcli.out $< $(LIBS)

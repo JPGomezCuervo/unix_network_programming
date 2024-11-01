@@ -50,7 +50,6 @@ int main(int argc, char **argv) {
    * by other low level networking functions. sin_zero[] is used as a padding to
    * maintain the castability with the struct sockaddr.
    *    struct sockaddr {
-   *            uint8_t           sa_len;
    *            unsigned short    sa_family;    // address family, AF_xxx
    *            char              sa_data[14];  // 14 bytes of protocol address
    *                              |

@@ -29,3 +29,4 @@ int Accept(int sockfd, struct sockaddr *addr, socklen_t *addr_len);
 size_t Write(int fd, const void *buf, size_t count);
 int Close(int sockfd);
 ssize_t Readn(int fd, void *vptr, size_t nbytes);
+ssize_t Writen(int fd, void *vptr, size_t nbytes);

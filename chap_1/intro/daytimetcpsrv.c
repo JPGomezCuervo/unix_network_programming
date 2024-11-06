@@ -1,8 +1,8 @@
-#include "../../include/err.h"
-#include "../../include/unp.h"
-#include "../../include/socket.h"
+#include <err.h>
+#include <unp.h>
+#include <socket.h>
 #include <strings.h>
-#include <netinet/in.h>
+#include <in.h>
 #include <time.h>
 #include <string.h>
 #include <stdio.h>

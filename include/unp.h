@@ -30,3 +30,4 @@ size_t Write(int fd, const void *buf, size_t count);
 int Close(int sockfd);
 ssize_t Readn(int fd, void *vptr, size_t nbytes);
 ssize_t Writen(int fd, void *vptr, size_t nbytes);
+ssize_t readline(int fd, void *vptr, size_t maxlen); /* cambiar por Readline */

@@ -31,3 +31,4 @@ int Close(int sockfd);
 ssize_t Readn(int fd, void *vptr, size_t nbytes);
 ssize_t Writen(int fd, void *vptr, size_t nbytes);
 ssize_t readline(int fd, void *vptr, size_t maxlen); /* cambiar por Readline */
+int Sock_pton_loose(int af, const char *src, void *dst);

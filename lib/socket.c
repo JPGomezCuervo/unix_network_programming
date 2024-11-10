@@ -21,6 +21,10 @@ inline int Bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
 inline int Listen(int sockfd, int backlog)
 {
         int n;
+        char *ptr;
+
+        if ( (ptr = getenv("LISTENQ")) != NULL)
+                backlog = atoi(ptr);
 
         if ( (n = listen(sockfd, backlog)) < 0)
                 err_sys("listen error");

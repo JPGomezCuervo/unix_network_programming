@@ -7,6 +7,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <syslog.h>
+#include <time.h>
 #include <unistd.h>
 
 #define MAXLINE         4096
@@ -34,4 +35,4 @@ ssize_t readline(int fd, void *vptr, size_t maxlen); /* cambiar por Readline */
 int Sock_pton_loose(int af, const char *src, void *dst);
 
 /*libwrap*/
-inline char *Inet_ntop(int af, const void *src, char *dst, socklen_t size)
+const char *Inet_ntop(int af, const void *src, char *dst, socklen_t size);

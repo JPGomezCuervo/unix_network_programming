@@ -1,18 +1,12 @@
-#include <err.h>
 #include "unp.h"
-#include <socket.h>
-#include <strings.h>
-#include <in.h>
-#include <time.h>
-#include <string.h>
-#include <stdio.h>
 
 int main()
 {
         int listenfd, connfd;
-        struct sockaddr_in servaddr;
+        struct sockaddr_in servaddr, cliaddr;
         char buf [MAXLINE + 1];
         time_t ticks;
+        socklen_t len;
 
         listenfd = Socket(AF_INET, SOCK_STREAM, 0);
 
@@ -26,7 +20,7 @@ int main()
          * end of the day IPv6 was created and a whole new structure was created:
          * sockaddr_in6*/
         servaddr.sin_addr.s_addr = htonl(INADDR_ANY); 
-        servaddr.sin_port = htons(9999);
+        servaddr.sin_port = htons(13);
 
         Bind(listenfd, (struct sockaddr *) &servaddr, sizeof(servaddr));
 
@@ -37,7 +31,11 @@ int main()
 
         for ( ; ; )
         {
-                connfd = Accept(listenfd, (struct sockaddr *)NULL, NULL);
+                len = sizeof(cliaddr);
+                connfd = Accept(listenfd, (struct sockaddr *)&cliaddr, &len);
+                printf("Connection from %s, port %d\n",
+                        Inet_ntop(AF_INET, &cliaddr.sin_family, buf, sizeof(buf)),
+                        ntohs(cliaddr.sin_port));
 
                 ticks = time(NULL);
 
@@ -49,4 +47,5 @@ int main()
                 Close(connfd);
         }
 
+        return 0;
 }

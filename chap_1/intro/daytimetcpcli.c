@@ -61,6 +61,11 @@ int main(int argc, char **argv) {
    *     };
    *
    */
+
+  /* is not very clear why we need to zero all members of struct sockaddr but
+   * is the best practice because some architectures require some parts of the
+   * structure to be zero. Nontheless, on IPv6 is required to be zero*/
+
   bzero(&servaddr, sizeof(servaddr));
   bzero(&cliaddr, sizeof(cliaddr));
 

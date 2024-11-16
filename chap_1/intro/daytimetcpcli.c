@@ -4,6 +4,8 @@ int main(int argc, char **argv) {
   int sockfd, n;
   char recvline [MAXLINE + 1];
   struct sockaddr_in servaddr;
+  struct sockaddr_in cliaddr;
+  socklen_t len;
   /*
    * int socket (int domain, int type, int protocol);
    *
@@ -60,6 +62,9 @@ int main(int argc, char **argv) {
    *
    */
   bzero(&servaddr, sizeof(servaddr));
+  bzero(&cliaddr, sizeof(cliaddr));
+
+  len = sizeof(cliaddr);
 
   servaddr.sin_family = AF_INET;
   servaddr.sin_port = htons(13);
@@ -80,6 +85,14 @@ int main(int argc, char **argv) {
 
   if (connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0)
           err_sys("connect error");
+
+  if (getsockname(sockfd, (struct sockaddr *) &cliaddr, &len) < 0)
+          err_sys("getsockname error");
+                  
+  Sock_ntop((struct sockaddr *) &cliaddr, sizeof(cliaddr)),
+
+  printf("Connecting from %s\n",
+                  Sock_ntop((struct sockaddr *) &cliaddr, sizeof(cliaddr)));
 
   int counter = 0;
   while ( (n = read(sockfd, recvline, MAXLINE )) > 0)

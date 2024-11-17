@@ -13,6 +13,8 @@
 #define MAXLINE         4096
 #define BUFFSIZE        8192
 #define LISTENQ         1024
+#define SERV_PORT       9877
+
 
 void err_doit(int8_t errnoflag, int level, const char *fmt, va_list ap );
 void err_sys(const char *fmt, ...);
@@ -31,8 +33,15 @@ size_t Write(int fd, const void *buf, size_t count);
 int Close(int sockfd);
 ssize_t Readn(int fd, void *vptr, size_t nbytes);
 ssize_t Writen(int fd, void *vptr, size_t nbytes);
-ssize_t readline(int fd, void *vptr, size_t maxlen); /* cambiar por Readline */
+ssize_t Readline(int fd, void *vptr, size_t maxlen);
 int Sock_pton_loose(int af, const char *src, void *dst);
 
 /*libwrap*/
 const char *Inet_ntop(int af, const void *src, char *dst, socklen_t size);
+void Inet_pton(int af, const char *pstr, void *dst);
+char *Fgets(char *buff, int size, FILE *stream);
+int Fputs(char *s, FILE *stream);
+
+/* echo server */
+void str_echo(int sockfd);
+void str_cli(FILE *fp, int sockfd);

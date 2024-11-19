@@ -60,3 +60,13 @@ ssize_t readlinebuf(void **vptrptr)
                 *vptrptr = read_ptr;
         return read_cnt;
 }
+
+
+ssize_t Readline(int fd, void *vptr, size_t maxlen)
+{
+	ssize_t n;
+
+	if ( (n = readline(fd, vptr, maxlen)) < 0)
+		err_sys("readline error");
+	return n;
+}

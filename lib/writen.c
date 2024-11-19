@@ -8,7 +8,7 @@ ssize_t writen(int fd, void *vptr, size_t n)
         ptr = vptr;
         nleft = n;
 
-        while (n > 0)
+        while (nleft > 0)
         {
                 if ( (nwritten = write(fd, ptr, nleft)) < 0)
                 {
@@ -28,7 +28,7 @@ ssize_t Writen(int fd, void *vptr, size_t nbytes)
 {
         ssize_t n;
 
-        if ( (n = writen(fd, vptr,nbytes)) < 0)
+        if ( (n = writen(fd, vptr, nbytes)) < 0)
                 err_sys("write error");
 
         return n;

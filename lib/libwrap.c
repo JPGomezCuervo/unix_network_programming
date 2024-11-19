@@ -27,7 +27,7 @@ char *Fgets(char *buff, int size, FILE *stream)
 {
         char *s;
 
-        if ( (s = fgets(buff, size, stream)) == NULL)
+        if ( (s = fgets(buff, size, stream)) == NULL && ferror(stream))
                 err_quit("fgets error");
 
         return s;
@@ -36,7 +36,9 @@ char *Fgets(char *buff, int size, FILE *stream)
 int Fputs(char *s, FILE *stream)
 {
         int n;
-        if ( (n = fputs(s, stream)) < 0)
+        if ( (n = fputs(s, stream)) == EOF)
+                exit(0);
+        else if (n < 0)
                 err_quit("fputs error");
 
         return n;

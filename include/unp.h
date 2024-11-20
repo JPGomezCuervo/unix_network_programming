@@ -1,6 +1,7 @@
 #include <arpa/inet.h>
 #include <errno.h>
 #include <netinet/in.h>
+#include <signal.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,12 +10,14 @@
 #include <syslog.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 #define MAXLINE         4096
 #define BUFFSIZE        8192
 #define LISTENQ         1024
 #define SERV_PORT       9877
 
+typedef void Sigfunc(int);
 
 void err_doit(int8_t errnoflag, int level, const char *fmt, va_list ap );
 void err_sys(const char *fmt, ...);
@@ -41,6 +44,8 @@ const char *Inet_ntop(int af, const void *src, char *dst, socklen_t size);
 void Inet_pton(int af, const char *pstr, void *dst);
 char *Fgets(char *buff, int size, FILE *stream);
 int Fputs(char *s, FILE *stream);
+Sigfunc *Signal(int signo, Sigfunc *func);
+void sig_chld(int signo);
 
 /* echo server */
 void str_echo(int sockfd);

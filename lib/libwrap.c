@@ -36,9 +36,7 @@ char *Fgets(char *buff, int size, FILE *stream)
 int Fputs(char *s, FILE *stream)
 {
         int n;
-        if ( (n = fputs(s, stream)) == EOF)
-                exit(0);
-        else if (n < 0)
+        if ( (n = fputs(s, stream)) < 0)
                 err_quit("fputs error");
 
         return n;

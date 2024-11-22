@@ -19,10 +19,27 @@ int main()
         Bind(listenfd, (struct sockaddr *) &srvaddr, sizeof(srvaddr));
 
         Listen(listenfd, LISTENQ);
+        Signal(SIGCHLD, sig_chld);
 
         for (;;)
         {
-                connfd = Accept(listenfd, (struct sockaddr *) &cliaddr, &clilen);
+
+                /* for matter of compatibility we should restart manually the
+                 * slow syscall (accept) because not all unix-like kernels
+                 * restart automatically the syscalls interrupted by EINTR some
+                 * functions that should be handled like this are: read, write,
+                 * select and open. NOTE: connect can't be restarted*/
+
+                if ( (connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &clilen)) < 0)
+                {
+                        /* when a syscall is interrupted by a signal errno is
+                         * set to EINTR */
+
+                        if (errno == EINTR)
+                                continue;
+                        else
+                                err_sys("accept error");
+                }
 
                 if ((childpid = fork()) == 0)
                 {

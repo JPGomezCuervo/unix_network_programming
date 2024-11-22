@@ -12,6 +12,10 @@ daytimetcpsrv: ./chap_1/intro/daytimetcpsrv.c
 tcpsrv01: ./chap_5/tcpsrv01.c ./chap_5/str_echo.c ./chap_5/sigchldwait.c
 	$(CC) $(CFLAGS) -o ./chap_5/tcpsrv01.out $^  $(LIBS)
 
+
+tcpcli02: ./chap_5/tcpcli02.c ./chap_5/str_cli.c 
+	$(CC) $(CFLAGS) -o ./chap_5/tcpcli02.out $^  $(LIBS)
+
 tcpcli01: ./chap_5/tcpcli01.c ./chap_5/str_cli.c 
 	$(CC) $(CFLAGS) -o ./chap_5/tcpcli01.out $^  $(LIBS)
 

@@ -1,5 +1,7 @@
 #include "unp.h"
 
+// Signal returns the old handler because we don't want to lose the default handler
+
 Sigfunc *signal(int signo, Sigfunc *func)
 {
         struct sigaction act, oact;
@@ -11,6 +13,7 @@ Sigfunc *signal(int signo, Sigfunc *func)
         if (signo != SIGALRM)
                 act.sa_flags |= SA_RESTART;
 
+        // sigaction subscribes a handler and a behavior to certain signal
         if (sigaction(signo, &act, &oact) < 0)
                 return SIG_ERR;
 
